@@ -1,0 +1,147 @@
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Skripsi</title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+  {% load staticfiles %}
+  <!-- Mobile Specific Metas
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="apple-touch-icon" href="{% static 'gambar/rafles3.png' %}">
+  <link rel="shortcut icon" href="{% static 'gambar/rafles3.png' %}">
+
+  <!-- FONT
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+
+  <!-- CSS
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="{% static 'css/normalize.css' %}">
+  <link rel="stylesheet" href="{% static 'css/skeleton.css' %}">
+  <link rel="stylesheet" href="{% static 'css/main.css' %}">
+  <link rel="stylesheet" href="{% static 'css/alertify.min.css' %}">
+  <link rel="stylesheet" href="{% static 'themes/default.min.css' %}">
+  <!-- <script src="{% static 'js/main.js' %}"></script> -->
+</head>
+
+<body>
+
+  <div class="container">
+    <div class="row" style="margin-top: 20px">
+      <h4>Stemming Dokumen Teks Bahasa Bengkulu</h4>
+    </div>
+    <form method='POST'>
+      {% csrf_token %}
+      <div class="row">
+        <div class="twelve columns">
+          <label for="input_text">Dataset</label>
+          <textarea name="input_text" style="text-align: justify;" readonly>{{dataset}}</textarea>
+        </div>
+        <!-- <div class="six columns">
+          <label for="output_text">Output</label>
+          <textarea name="output_text">{{ output_text }}</textarea>
+        </div> -->
+      </div>
+      <div class="row">
+        <div class="twelve columns">
+          <label for="input_text">Case Folding</label>
+          <textarea name="input_text" style="text-align: justify;" readonly>{{case_folding}}</textarea>
+        </div>
+        <!-- <div class="six columns">
+          <label for="output_text">Output</label>
+          <textarea name="output_text">{{ output_text }}</textarea>
+        </div> -->
+      </div>
+      <div class="row">
+        <div class="twelve columns">
+          <label for="input_text">Tokenizing</label>
+          <textarea name="input_text" style="text-align: justify;" readonly>{{tokenizing}}</textarea>
+        </div>
+        <!-- <div class="six columns">
+          <label for="output_text">Output</label>
+          <textarea name="output_text">{{ output_text }}</textarea>
+        </div> -->
+      </div>
+      <div class="row">
+        <div class="twelve columns">
+          <label for="input_text">Remove Stopword</label>
+          <textarea name="input_text" style="text-align: justify;" readonly>{{remove_stopword}}</textarea>
+        </div>
+        <!-- <div class="six columns">
+          <label for="output_text">Output</label>
+          <textarea name="output_text">{{ output_text }}</textarea>
+        </div> -->
+      </div>
+      <div class="row">
+        <div class="twelve columns">
+          <label for="input_text">Corpus</label>
+          <textarea name="input_text" style="text-align: justify;" readonly>{{corpus}}</textarea>
+        </div>
+        <!-- <div class="six columns">
+          <label for="output_text">Output</label>
+          <textarea name="output_text">{{ output_text }}</textarea>
+        </div> -->
+      </div>
+      <!-- <div class="row">
+        <div class="six columns">
+          <label for="input_text">Stem</label>
+          <textarea name="input_text" style="text-align: justify;" readonly>{{proses}}</textarea>
+        </div>
+        <div class="six columns">
+          <label for="output_text">Output</label>
+          <textarea name="output_text" style="text-align: justify;" readonly>{{ output_text }}</textarea>
+        </div>
+      </div> -->
+      <div class="row">
+        <div class="six columns">
+          <label for="output_text">Stemming</label>
+          <textarea style="font-family:arial;" name="output_text" style="text-align: justify;" readonly>
+            {% for a,b in stemming %}
+              {{ a }}. {{ b }}
+            {% endfor %}
+            </textarea>
+        </div>
+
+        <div class="six columns">
+          <label for="output_text">Root Word</label>
+          <textarea style="font-family:arial;" name="output_text" style="text-align: justify;" readonly>
+            {% for x,y in root_word %}
+            {{ x }}. {{ y }}
+            {% endfor %}
+            </textarea>
+        </div>
+      </div>
+      <div class="row">
+        <div class="twelve columns">
+          <label for="input_text">Running Time : {{time}}</label>
+        </div>
+        <!-- <div class="six columns">
+          <label for="output_text">Output</label>
+          <textarea name="output_text">{{ output_text }}</textarea>
+        </div> -->
+      </div>
+      <div class="row" style="margin-top: 20px" style="text-align: center;">
+        <a class="batton batton-primary" href="{% url 'index' %}">Home</a>
+        <a class="batton batton-primary" href="{% url 'export' %}">export</a>
+      </div>
+    </form>
+  </div>
+</body>
+
+
+</html>
+
+<script src="{% static 'js/alertify.min.js' %}"></script>
+<script src="{% static 'js/jquery.min.js' %}"></script>
+<script>
+  alertify.success('Success');
+</script>
+
+<style>
+  div.justified {
+    display: flex;
+    justify-content: center;
+  }
+</style>
